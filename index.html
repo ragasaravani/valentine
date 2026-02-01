@@ -5,6 +5,7 @@
 <title>Be My Valentine 💖</title>
 
 <style>
+  /* BODY & BACKGROUND */
   body {
     margin: 0;
     height: 100vh;
@@ -16,30 +17,28 @@
     font-family: 'Segoe UI', sans-serif;
   }
 
+  /* CARD (responsive!) */
   .card {
     background: white;
-    padding: 40px;
-    border-radius: 20px;
+    padding: 5vw;            /* scales on mobile */
+    border-radius: 5vw;      /* scales on mobile */
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    max-width: 360px;
+    box-shadow: 0 5vw 15px rgba(0,0,0,0.2);
+    max-width: 90vw;         /* fills most of phone screen */
+    width: 360px;            /* fallback for desktop */
     z-index: 2;
   }
 
   h1 { color: #ff4d6d; }
-
-  p {
-    font-size: 18px;
-    margin-bottom: 30px;
-  }
+  p { font-size: 4vw; margin-bottom: 5vw; } /* responsive font size */
 
   button {
-    padding: 12px 22px;
-    font-size: 16px;
+    padding: 3vw 5vw;
+    font-size: 4vw;
     border: none;
-    border-radius: 25px;
+    border-radius: 5vw;
     cursor: pointer;
-    margin: 10px;
+    margin: 2vw;
     background: #ff4d6d;
     color: white;
     transition: 0.3s;
@@ -50,10 +49,10 @@
     background: #ff1e4d;
   }
 
-  /* Hearts */
+  /* Floating hearts */
   .heart {
     position: absolute;
-    font-size: 20px;
+    font-size: 5vw;
     animation: floatUp 6s linear infinite;
     user-select: none;
     pointer-events: none;
@@ -64,34 +63,28 @@
     100% { transform: translateY(-100vh); opacity: 0; }
   }
 
-  /* Screens */
+  /* SAD & MWAH Screens */
   #sadScreen, #mwah {
     position: fixed;
     inset: 0;
     display: none;
     justify-content: center;
     align-items: center;
-    font-size: 90px;
+    font-size: 20vw;
     z-index: 999;
   }
 
-  #sadScreen {
-    background: #fff;
-  }
+  #sadScreen { background: #fff; }
+  #mwah { background: linear-gradient(135deg, #ff4d6d, #ff9a9e); color: white; font-weight: bold; }
 
-  #mwah {
-    background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
-    color: white;
-    font-weight: bold;
-  }
 </style>
 </head>
 
 <body>
 
 <div class="card" id="mainCard">
-  <h1>Tanishhhhhhhh ❤️</h1>
-  <p>Will you be my Valentineeeeeee?</p>
+  <h1>Tanishhhhhh ❤️</h1>
+  <p>Will you be my Valentineeeee?</p>
 
   <button id="yesBtn" onclick="softYes()">Yes 💕</button>
   <button onclick="realYes()">Yessssssssss 😍</button>
@@ -101,8 +94,6 @@
 <div id="mwah">MWAHHH 💋❤️</div>
 
 <script>
-  let firstYesClicked = false;
-
   setInterval(createHeart, 300);
 
   function createHeart() {
@@ -110,11 +101,12 @@
     h.className = "heart";
     h.innerHTML = "❤️";
     h.style.left = Math.random() * 100 + "vw";
-    h.style.fontSize = Math.random() * 20 + 15 + "px";
+    h.style.fontSize = Math.random() * 5 + 4 + "vw";
     document.body.appendChild(h);
     setTimeout(() => h.remove(), 6000);
   }
 
+  // Fake Yes click
   function softYes() {
     document.getElementById("mainCard").style.display = "none";
     document.getElementById("sadScreen").style.display = "flex";
@@ -126,6 +118,7 @@
     }, 1500);
   }
 
+  // Real Yes → MWAHH
   function realYes() {
     document.getElementById("mwah").style.display = "flex";
     for (let i = 0; i < 30; i++) {
