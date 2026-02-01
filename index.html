@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    max-width: 360px;
+    z-index: 2;
+  }
+
+  h1 { color: #ff4d6d; }
+
+  p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  button {
+    padding: 12px 22px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 10px;
+    background: #ff4d6d;
+    color: white;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    transform: scale(1.1);
+    background: #ff1e4d;
+  }
+
+  /* Hearts */
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+  }
+
+  /* Screens */
+  #sadScreen, #mwah {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 90px;
+    z-index: 999;
+  }
+
+  #sadScreen {
+    background: #fff;
+  }
+
+  #mwah {
+    background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
+    color: white;
+    font-weight: bold;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="mainCard">
+  <h1>Tanishhhhhhhh ❤️</h1>
+  <p>Will you be my Valentineeeeeee?</p>
+
+  <button id="yesBtn" onclick="softYes()">Yes 💕</button>
+  <button onclick="realYes()">Yessssssssss 😍</button>
+</div>
+
+<div id="sadScreen">😢</div>
+<div id="mwah">MWAHHH 💋❤️</div>
+
+<script>
+  let firstYesClicked = false;
+
+  setInterval(createHeart, 300);
+
+  function createHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 6000);
+  }
+
+  function softYes() {
+    document.getElementById("mainCard").style.display = "none";
+    document.getElementById("sadScreen").style.display = "flex";
+
+    setTimeout(() => {
+      document.getElementById("sadScreen").style.display = "none";
+      document.getElementById("mainCard").style.display = "block";
+      document.getElementById("yesBtn").style.display = "none";
+    }, 1500);
+  }
+
+  function realYes() {
+    document.getElementById("mwah").style.display = "flex";
+    for (let i = 0; i < 30; i++) {
+      setTimeout(createHeart, i * 100);
+    }
+  }
+</script>
+
+</body>
+</html>
